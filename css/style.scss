@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-// imports files
-@import 'navbar';
-
-
 *{
     box-sizing: border-box;
     margin: 0;
@@ -11,6 +7,118 @@
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
+
+// color
+$lime : #24EA6F;
+$dark : #141E27;
+$light : #F7F7F7;
+$Hover : #FF008E;
+
+// navbar
+%align-center{
+    display: flex;
+    align-items: center;
+}
+
+@mixin tablet{
+    @media screen and (max-width: 768px){
+        @content;
+    }
+}
+
+@mixin mobile{
+    @media screen and (max-width: 280px){
+        @content;
+    }
+}
+
+.navbar{
+    background: $light;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem calc((100vw - 1200px) /2);
+    z-index: 10;
+    position: relative;
+
+    &__logo{
+        color: $dark;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: 500;
+        margin-left: 24px;
+        @extend %align-center;
+
+        span{
+            color: $lime;
+            letter-spacing: 1px;
+        }
+    }
+
+    &__bars{
+        opacity: 0;
+    
+        @include tablet{
+            color: $dark;
+            opacity: 1;
+            position: absolute;
+            top: 22px;
+            right: 20px;
+            font-size: 1.855rem;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+     
+    }
+
+    &__bars:hover{
+        color: $Hover;
+    }
+
+    &__menu{
+        @extend %align-center;
+        list-style: none;
+        text-align: center;
+        margin-right: 24px;
+
+        @include tablet{
+            display: none;
+        }
+
+        &--links{
+            color: $dark;
+            @extend %align-center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 0 1rem;
+            font-size: .895rem;
+            font-weight: 500;
+
+            &:hover{
+                color: $Hover;
+                transition: all 0.3s ease;
+            }
+        }
+
+        #button{
+            padding: 12px 24px;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            background: $lime;
+            margin-left: 16px;
+            color: $light;
+
+            &:hover{
+                background: $Hover;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+}
+
+
 
 // hero section
 .hero{
